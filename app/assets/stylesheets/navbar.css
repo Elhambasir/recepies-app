@@ -14,6 +14,7 @@ nav {
   display: flex;
   gap: 20px;
   list-style: none;
+  align-items: center;
 }
 
 .navbar a {
@@ -25,4 +26,14 @@ nav {
 .navbar a:hover {
   color: blue;
   text-decoration: underline;
+}
+
+.sign-button {
+  padding: 3px;
+  border-radius: 5px;
+}
+
+.sign-button:hover {
+  color: red;
+  cursor: pointer;
 }
