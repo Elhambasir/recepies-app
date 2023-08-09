@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   resources :foods, only: [:index, :new, :create]
   resources :recipes do 
     resources :recipe_foods, as: 'foods'
+    member do
+      patch 'toggle_public'
+    end
   end
   resources :foods, only: [:index, :new, :create, :destroy]
   resources :recipes, only: [:index, :new, :create, :show, :edit, :update, :destroy]

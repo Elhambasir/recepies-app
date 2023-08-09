@@ -1,0 +1,36 @@
+.recipe-details {
+  padding-inline: 20px;
+}
+
+.toggle-public-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 5px 8px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.toggle-public-btn:hover {
+  opacity: 0.8;
+  color: greenyellow;
+}
+
+.summary {
+  position: relative;
+  width: 70%;
+}
+
+.describe {
+  font-size: 2rem;
+}
+
+.toggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.status {
+  color: #007bff;
+}
