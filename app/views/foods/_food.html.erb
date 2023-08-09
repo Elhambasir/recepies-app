@@ -4,6 +4,10 @@
   <td><%= food.quantity %></td>
   <td><%= food.price %></td>
   <td>
-    <%= button_to 'Delete', food_path(food), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-button' %>
+    <% if can?(:delete, food) %>
+      <%= button_to 'Delete', food_path(food), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-button' %>
+    <%else%>
+      No actions
+    <% end %>
   </td>
 </tr>
