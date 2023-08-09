@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :recipes do 
     resources :recipe_foods, as: 'foods'
   end
+  resources :foods, only: [:index, :new, :create, :destroy]
+  resources :recipes, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :public_recipes  

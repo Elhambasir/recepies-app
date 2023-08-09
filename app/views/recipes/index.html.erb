@@ -30,3 +30,8 @@
     </div> 
   <% end %>
 </div>
+<% if user_signed_in? %>
+  <div>
+    <%= link_to "New recipe", new_recipe_path %>
+  </div>
+<% end %>
