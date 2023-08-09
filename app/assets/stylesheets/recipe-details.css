@@ -34,3 +34,19 @@
 .status {
   color: #007bff;
 }
+
+.buttons-details {
+  display: flex;
+  gap: 20px;
+}
+
+.ingredient-btn,
+.shopping-list-btn {
+  border-radius: 4px;
+  box-shadow: 1px 1px 3px;
+}
+
+.ingredient-btn:hover,
+.shopping-list-btn:hover {
+  color: green
+}
