@@ -10,7 +10,6 @@ class RecipesController < ApplicationController
     else
       redirect_to new_user_session_path
     end
-
   end
 
   # GET /recipes/1 or /recipes/1.json
