@@ -1,13 +1,21 @@
 class RecipesController < ApplicationController
+  load_and_authorize_resource
   before_action :set_recipe, only: %i[show edit update destroy]
 
   # GET /recipes or /recipes.json
   def index
-    @recipes = Recipe.all
+    # Should display a list of recipes created by the logged-in user as in the wireframe.
+    @recipes = if user_signed_in?
+                 Recipe.where(user_id: current_user.id)
+               else
+                 Recipe.where(public: true)
+               end
   end
 
   # GET /recipes/1 or /recipes/1.json
-  def show; end
+  def show
+    @recipe = Recipe.find(params[:id])
+  end
 
   # GET /recipes/new
   def new
