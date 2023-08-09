@@ -17,5 +17,7 @@
   </tbody>
 </table>
 
-<%= button_to 'New food', new_food_path, method: :get, class: 'new-food-btn' %>
+<% if current_user %>
+  <%= button_to 'New food', new_food_path, method: :get, class: 'new-food-btn' %>
+<%end%>
 
