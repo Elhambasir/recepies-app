@@ -5,11 +5,12 @@ class RecipesController < ApplicationController
   # GET /recipes or /recipes.json
   def index
     # Should display a list of recipes created by the logged-in user as in the wireframe.
-    if user_signed_in?
-      @recipes = Recipe.where(user_id: current_user.id)
-    else
-      redirect_to new_user_session_path
-    end
+    @recipes = Recipe.where(user_id: current_user.id)
+    @recipes = if user_signed_in?
+                 Recipe.where(user_id: current_user.id)
+               else
+                 Recipe.where(public: true)
+               end
   end
 
   # GET /recipes/1 or /recipes/1.json
