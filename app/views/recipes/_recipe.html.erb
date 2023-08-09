@@ -1,5 +1,5 @@
 <div class='recipe-details'>
-  <h2 class='heading'><%= recipe.name %></h2>
+  <h2 class='heading'><%= recipe.name.capitalize %></h2>
   <div class='summary'>
     <p class='describe'>Public: <span class='status'><%= @recipe.public ? 'Yes' : 'No' %></span></p>
     <span class='describe'>Preparation time: <%= recipe.preparation_time %></span>
@@ -24,5 +24,15 @@
 
   <hr/>
 
-  <table></table>
+  <table>
+    <tr>
+      <th>Food</th>
+      <th>Quantity</th>
+      <th>Value</th>
+      <th>Actions</th>
+    </tr>
+    <tbody>
+      
+    </tbody>
+  </table>
 </div>
