@@ -1,4 +1,6 @@
-<div id="<%= dom_id recipe %>">
+<%
+=begin%>
+ <div id="<%= dom_id recipe %>">
   <p>
     <strong>Name:</strong>
     <%= recipe.name %>
@@ -29,4 +31,32 @@
     <%= recipe.user_id %>
   </p>
 
+</div> 
+<%
+=end%>
+
+<div>
+  <h2><%= recipe.name %></h2>
+  <div>
+    <span>Preparation time: <%= recipe.preparation_time %></span>
+    <span>Public switch</span>
+  </div>
+  <p>Cooking time: <%= recipe.cooking_time %></p>
+
+  <div>
+    <p><%= recipe.description %></p>
+  </div>
+
+  <%
+=begin%>
+ <div>
+    <%= button_to "Generate shopping list", model %>
+    <%= button_to "Add ingredient", model %>
+  </div> 
+<%
+=end%>
+
+  <hr/>
+
+  <table></table>
 </div>
