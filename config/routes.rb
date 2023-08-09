@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   post 'toggle_public', to: 'recipes#toggle'
   # Defines the root path route ("/")
   root to: 'users#index'
+  get '/general_shopping_list', to: 'shopping_list#index'
 end
