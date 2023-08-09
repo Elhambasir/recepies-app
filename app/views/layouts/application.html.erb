@@ -11,6 +11,22 @@
   </head>
 
   <body>
+    <nav>
+      <ul class='navbar'>
+        <li><%= link_to 'Home',  root_path %></li>
+        <li><%= link_to 'Foods',  foods_path %></li>
+        <li><%= link_to 'Recipes',  recipes_path %></li>
+        <li><%= link_to 'Shopping List', general_shopping_list_path %></li>
+        <% if user_signed_in? %>
+          <!-- Display the sign-out button -->
+          <li><%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: 'sign-button' %></li>
+        <% else %>
+          <!-- Display sign-in or registration links -->
+          <li><%= link_to "Sign In", new_user_session_path %></li>
+          <li><%= link_to "Register", new_user_registration_path %></li>
+        <% end %>
+      </ul>
+    </nav>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
