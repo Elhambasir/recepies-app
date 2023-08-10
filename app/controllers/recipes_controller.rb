@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   load_and_authorize_resource
-  before_action :set_recipe, only: %i[show edit update destroy]
+  before_action :set_recipe, only: %i[show edit update destroy toggle_public]
 
   # GET /recipes or /recipes.json
   def index
@@ -14,7 +14,8 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1 or /recipes/1.json
   def show
-    @recipe = Recipe.find(params[:id])
+    @recipe_food = RecipeFood.new
+    @foods = @recipe.foods
   end
 
   # GET /recipes/new
@@ -63,11 +64,16 @@ class RecipesController < ApplicationController
     end
   end
 
+  def toggle_public
+    @recipe.update(public: !@recipe.public)
+    redirect_to @recipe, notice: 'Public status successfully updated.'
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_recipe
-    @recipe = Recipe.find(params[:id])
+    @recipe = Recipe.includes(:user, :recipe_foods).find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
