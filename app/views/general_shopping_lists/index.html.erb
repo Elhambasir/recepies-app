@@ -29,9 +29,9 @@
         <tbody>
           <% @food_lists.each do |item| %>
             <tr>
-              <td><%= item.name %></td>
-              <td><%= item.difference %><%= item.measurement_unit %></td>
-              <td>$<%= item.price * item.difference %></td>
+              <td><%= item.food.name %></td>
+              <td><%= item.food.quantity %><%= item.food.measurement_unit %></td>
+              <td>$<%= item.food.price * item.food.quantity %></td>
             </tr>
           <% end %>
         </tbody>
