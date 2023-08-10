@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   load_and_authorize_resource
-  before_action :set_recipe, only: %i[show edit update destroy]
+  before_action :set_recipe, only: %i[show edit update destroy toggle_public]
 
   # GET /recipes or /recipes.json
   def index
@@ -65,7 +65,6 @@ class RecipesController < ApplicationController
   end
 
   def toggle_public
-    @recipe = Recipe.find(params[:id])
     @recipe.update(public: !@recipe.public)
     redirect_to @recipe, notice: 'Public status successfully updated.'
   end

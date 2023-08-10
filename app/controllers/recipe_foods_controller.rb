@@ -1,13 +1,5 @@
 class RecipeFoodsController < ApplicationController
-  before_action :set_recipe_food, only: %i[show edit update destroy]
-
-  # GET /recipe_foods or /recipe_foods.json
-  def index
-    @recipe_foods = RecipeFood.all
-  end
-
-  # GET /recipe_foods/1 or /recipe_foods/1.json
-  def show; end
+  before_action :set_recipe_food, only: %i[edit update destroy]
 
   # GET /recipe_foods/new
   def new
@@ -52,7 +44,7 @@ class RecipeFoodsController < ApplicationController
     @recipe_food.destroy
 
     respond_to do |format|
-      format.html { redirect_to recipe_foods_path(@recipe), notice: 'Recipe food was successfully destroyed.' }
+      format.html { redirect_to recipe_path(@recipe), notice: 'Recipe food was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

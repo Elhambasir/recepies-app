@@ -50,3 +50,28 @@
 .shopping-list-btn:hover {
   color: green;
 }
+
+.links {
+  display: flex;
+  margin-top: 20px;
+  margin-left: 20px;
+  gap: 10px;
+}
+
+.remove-food-btn {
+  padding: 0;
+  font-size: 1rem;
+  border: none;
+  background: transparent;
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.remove-food-btn:hover {
+  color: red;
+}
+
+.btns {
+  display: flex;
+  gap: 10px;
+}
