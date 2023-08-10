@@ -18,7 +18,6 @@ class RecipesController < ApplicationController
     @recipe = Recipe.includes(:user, :recipe_foods).find(params[:id])
     @recipe_food = RecipeFood.new
     @foods = @recipe.foods
-    puts @foods
   end
 
   # GET /recipes/new
