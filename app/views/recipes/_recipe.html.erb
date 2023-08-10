@@ -3,11 +3,13 @@
   <div class='summary'>
     <p class='describe'>Public: <span class='status'><%= @recipe.public ? 'Yes' : 'No' %></span></p>
     <span class='describe'>Preparation time: <%= recipe.preparation_time %></span>
-    <span class='toggle'>
-      <%= button_to toggle_public_recipe_path(@recipe), method: :patch, class: 'toggle-public-btn' do %>
-        <%= @recipe.public? ? 'Make Private' : 'Make Public' %>
-      <% end %>
-    </span>
+    <% if current_user == @recipe.user %>
+      <span class='toggle'>
+        <%= button_to toggle_public_recipe_path(@recipe), method: :patch, class: 'toggle-public-btn' do %>
+          <%= @recipe.public? ? 'Make Private' : 'Make Public' %>
+        <% end %>
+      </span>
+    <% end %>
     <p class='describe'>Cooking time: <%= recipe.cooking_time %></p>
   </div>
 
