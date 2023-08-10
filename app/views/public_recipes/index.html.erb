@@ -1,4 +1,3 @@
-
 <div class="container mt-5 bg-light">
   <div class="row text-center">
     <div class="col-md-12">
@@ -15,7 +14,14 @@
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <p class="card-text"><%=recipe.description %></p>
+                <p class="card-text">Total food items: <%=recipe.recipe_foods.count %></p>
+                <p>Total Price : $
+                <% total_price = 0 %>
+                <% recipe.recipe_foods.each do |recipe_food| %>
+                <% total_price += recipe_food.quantity * (Food.find(recipe_food.food_id).price) %>
+                <% end %>
+                <%= total_price %>
+              </p>
                 <p>
                   <%= link_to "Show this recipe", recipe %>
                 </p>
