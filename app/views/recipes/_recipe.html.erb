@@ -27,12 +27,24 @@
   <table>
     <tr>
       <th>Food</th>
+      <th>Measurement unit</th>
       <th>Quantity</th>
       <th>Value</th>
       <th>Actions</th>
     </tr>
     <tbody>
-      
+      <% @recipe.recipe_foods.each do |recipe_food| %>
+        <tr>
+          <td><%= recipe_food.food.name %></td>
+          <td><%= recipe_food.food.measurement_unit %></td>
+          <td><%= recipe_food.quantity %></td>
+          <td>$<%= recipe_food.food.price * recipe_food.quantity %></td>
+          <td>
+            <%= link_to "Edit", edit_recipe_food_path(@recipe, recipe_food), class: "edit-food-btn" %>
+            <%= link_to "Remove", recipe_food_path(@recipe, recipe_food), method: :delete, data: { confirm: "Are you sure you want to remove this food item from the recipe?" }, class: "remove-food-btn" %>
+          </td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 </div>
