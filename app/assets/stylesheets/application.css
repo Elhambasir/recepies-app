@@ -21,3 +21,8 @@
 .notice {
   color: green;
 }
+
+.notice,
+.alert {
+  margin-top: 20px;
+}
