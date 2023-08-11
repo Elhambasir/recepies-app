@@ -1,35 +1,40 @@
 require 'rails_helper'
 
-RSpec.describe 'recipes/index', type: :view do
+RSpec.describe 'foods/index', type: :feature do
+  let(:user) { create :user }
+
   before(:each) do
-    assign(:recipes, [
-             Recipe.create!(
-               name: 'Name',
-               preparation_time: '9.99',
-               cooking_time: '9.99',
-               description: 'MyText',
-               public: false,
-               user: nil
-             ),
-             Recipe.create!(
-               name: 'Name',
-               preparation_time: '9.99',
-               cooking_time: '9.99',
-               description: 'MyText',
-               public: false,
-               user: nil
-             )
-           ])
+    user.save
+    # @recipe = FactoryBot.creaate(:recipe, user:)
   end
 
-  it 'renders a list of recipes' do
-    render
-    cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
-    assert_select cell_selector, text: Regexp.new('Name'.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new('9.99'.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new('9.99'.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new('MyText'.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new(false.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new(nil.to_s), count: 2
+  after do
+    Recipe.destroy_all
+    User.destroy_all
+  end
+
+  scenario 'Create recipe' do
+    sign_in user
+    visit recipes_path
+
+    expect(page).to have_current_path(recipes_path)
+    expect(page).to have_content('New recipe')
+
+    click_link 'New recipe'
+    expect(page).to have_current_path(new_recipe_path)
+    expect(page).to have_content('New recipe')
+    expect(page).to have_content('Name')
+    expect(page).to have_content('Preparation time')
+
+    fill_in 'recipe_name', with: 'Pizza'
+    fill_in 'recipe_preparation_time', with: 2
+    fill_in 'recipe_cooking_time', with: 2.0
+    fill_in 'recipe_description', with: 'This is a recipe description'
+
+    click_button 'Create Recipe'
+
+    expect(page).to have_content('Pizza')
+    expect(page).to have_content('Back to recipes')
+    expect(page).to have_content('Destroy this recipe')
   end
 end
