@@ -11,6 +11,11 @@ RSpec.describe 'recipe/show', type: :feature do
                                          public: false)
   end
 
+  after do
+    Recipe.destroy_all
+    User.destroy_all
+  end
+
   scenario 'Shows recipe details' do
     @recipe.save
 
