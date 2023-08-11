@@ -1,24 +1,49 @@
 require 'rails_helper'
 
-RSpec.describe 'recipes/show', type: :view do
+RSpec.describe 'recipe/show', type: :feature do
+  let(:user) { create :user }
+
   before(:each) do
-    assign(:recipe, Recipe.create!(
-                      name: 'Name',
-                      preparation_time: '9.99',
-                      cooking_time: '9.99',
-                      description: 'MyText',
-                      public: false,
-                      user: nil
-                    ))
+    user.save
+    sign_in user
+
+    @recipe = FactoryBot.create(:recipe, user:, name: 'Pizza', description: 'This is a pizza recipe', public: false)
   end
 
-  it 'renders attributes in <p>' do
-    render
-    expect(rendered).to match(/Name/)
-    expect(rendered).to match(/9.99/)
-    expect(rendered).to match(/9.99/)
-    expect(rendered).to match(/MyText/)
-    expect(rendered).to match(/false/)
-    expect(rendered).to match(//)
+  after do
+    RecipeFood.destroy_all
+    Recipe.destroy_all
+    Food.destroy_all
+    User.destroy_all
+  end
+
+  scenario 'Shows recipe details' do
+    @recipe.save
+
+    visit recipes_path
+    click_link 'Show this recipe'
+
+    expect(page).to have_content('This is a pizza recipe')
+    expect(page).to have_content('Pizza')
+    expect(page).to have_content('Back to recipes')
+    expect(page).to have_content('Destroy this recipe')
+    expect(page).to have_content('Edit this recipe')
+    expect(page).to have_content('Make Public')
+    expect(page).to have_content('Public: No')
+
+    click_button 'Make Public'
+
+    expect(page).to have_content('Make Private')
+    expect(page).to have_content('Public: Yes')
+    expect(page).to have_content('Add ingridient')
+    expect(page).to have_content('Generate Shopping list')
+
+    click_button 'Add ingridient'
+    expect(page).to have_content('New recipe food')
+
+    click_link 'Back to recipe'
+
+    click_button 'Generate Shopping list'
+    expect(page).to have_current_path(general_shopping_list_path)
   end
 end
