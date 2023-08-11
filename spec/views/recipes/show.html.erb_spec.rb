@@ -7,12 +7,13 @@ RSpec.describe 'recipe/show', type: :feature do
     user.save
     sign_in user
 
-    @recipe = FactoryBot.create(:recipe, user:, name: 'Pizza', description: 'This is a pizza recipe',
-                                         public: false)
+    @recipe = FactoryBot.create(:recipe, user:, name: 'Pizza', description: 'This is a pizza recipe', public: false)
   end
 
   after do
+    RecipeFood.destroy_all
     Recipe.destroy_all
+    Food.destroy_all
     User.destroy_all
   end
 
