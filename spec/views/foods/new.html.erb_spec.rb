@@ -1,29 +1,35 @@
 require 'rails_helper'
 
-RSpec.describe 'foods/new', type: :view do
+RSpec.describe 'foods/new', type: :feature do
+  let(:user) { create :user }
   before(:each) do
-    assign(:food, Food.new(
-                    name: 'MyString',
-                    measurement_unit: 'MyString',
-                    price: '9.99',
-                    quantity: 1,
-                    user: nil
-                  ))
+    user.save
   end
 
-  it 'renders new food form' do
-    render
+  after do
+    Food.destroy_all
+    User.destroy_all
+  end
+  
+  scenario "User creates a new food" do
+    sign_in user
 
-    assert_select 'form[action=?][method=?]', foods_path, 'post' do
-      assert_select 'input[name=?]', 'food[name]'
+    # Visit the new food page
+    visit new_food_path
 
-      assert_select 'input[name=?]', 'food[measurement_unit]'
+    # Fill in the form fields
+    fill_in "food_name", with: "Apple"
+    fill_in "food_measurement_unit", with: "Piece"
+    fill_in "food_price", with: 1.99
+    fill_in "food_quantity", with: 10
 
-      assert_select 'input[name=?]', 'food[price]'
+    # Click the "Create Food" button
+    click_button "Create Food"
 
-      assert_select 'input[name=?]', 'food[quantity]'
+    expect(page).to have_current_path(foods_path)
 
-      assert_select 'input[name=?]', 'food[user_id]'
-    end
+    expect(page).to have_content("Food was successfully created.")
+
+    expect(page).to have_content("Apple")
   end
 end
