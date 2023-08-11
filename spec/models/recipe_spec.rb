@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe Recipe, type: :model do
   subject do
     @user = User.create(name: 'user')
-    subject = Recipe.create(name: 'rice', preparation_time: 1, cooking_time: 2, description: 'description',
-                            public: true, user_id: 1)
+    Recipe.create(name: 'rice', preparation_time: 1, cooking_time: 2, description: 'description',
+                  public: true, user_id: 1)
   end
 
   before { subject.save }
@@ -37,7 +37,7 @@ RSpec.describe Recipe, type: :model do
     subject.preparation_time = nil
     expect(subject).to_not be_valid
   end
-  
+
   it 'preparation time must not be less than 1' do
     subject.preparation_time = -1
     expect(subject).to_not be_valid
