@@ -32,6 +32,5 @@ RSpec.describe 'foods/new', type: :feature do
     expect(page).to have_content('Price')
     expect(page).to have_content('5')
     expect(page).to have_content('10')
-    expect(page).to have_content('')
   end
 end
