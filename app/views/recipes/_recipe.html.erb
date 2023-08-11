@@ -19,7 +19,7 @@
 
   <% if current_user == @recipe.user %>
     <div class='buttons-details'>
-      <%= button_to "Generate Shopping list", general_shopping_list_path, method: :get, class: 'shopping-list-btn' %>
+      <%= button_to "Generate Shopping list", general_shopping_lists_path, method: :get, class: 'shopping-list-btn' %>
       <%= button_to "Add ingridient", new_recipe_food_path(recipe), method: :get, class: 'ingredient-btn' %>
     </div>
   <% end %>
