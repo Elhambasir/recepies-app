@@ -1,32 +1,32 @@
 require 'rails_helper'
 
-RSpec.describe 'foods/index', type: :view do
+RSpec.describe 'foods/index', type: :feature do
+  let(:user) { create :user }
+
   before(:each) do
-    assign(:foods, [
-             Food.create!(
-               name: 'Name',
-               measurement_unit: 'Measurement Unit',
-               price: '9.99',
-               quantity: 2,
-               user: nil
-             ),
-             Food.create!(
-               name: 'Name',
-               measurement_unit: 'Measurement Unit',
-               price: '9.99',
-               quantity: 2,
-               user: nil
-             )
-           ])
+    user.save
   end
 
-  it 'renders a list of foods' do
-    render
-    cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
-    assert_select cell_selector, text: Regexp.new('Name'.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new('Measurement Unit'.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new('9.99'.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new(2.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new(nil.to_s), count: 2
+  after do
+    Food.destroy_all
+    User.destroy_all
+  end
+  
+  scenario "User creates a new food" do
+    sign_in user
+
+    # Visit the new food page
+    visit foods_path
+    
+    expect(page).to have_current_path(foods_path)
+    expect(page).to have_content('Name')
+    
+    # Click the New Food" button
+    click_button "New food"
+    
+    expect(page).to have_current_path(new_food_path)
+    expect(page).to have_content("Back to foods")
+
+    expect(page).to have_content("New food")
   end
 end
