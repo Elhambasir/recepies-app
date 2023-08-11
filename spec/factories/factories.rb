@@ -1,15 +1,9 @@
 FactoryBot.define do
-  factory :user do
-    name { Faker::Name.name }
-    email { Faker::Internet.unique.email }
-    password { '1234567' }
-  end
-  
-
   factory :food do
-    name { Faker::Food.dish }
-    price { Faker::Number.decimal(l_digits: 2) }
-    quantity { Faker::Number.between(from: 1, to: 100) }
+    name { 'Example Food' }
+    measurement_unit { 'pieces' }
+    price { 5 }
+    quantity { 10 }
     user
   end
 
