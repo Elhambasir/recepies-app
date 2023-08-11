@@ -20,7 +20,7 @@ FactoryBot.define do
     end
 
     after(:create) do |recipe, evaluator|
-      create_list(:recipe_food, evaluator.foods_count, recipe: recipe)
+      create_list(:recipe_food, evaluator.foods_count, recipe:)
     end
   end
 
