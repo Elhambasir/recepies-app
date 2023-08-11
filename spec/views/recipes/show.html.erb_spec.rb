@@ -44,6 +44,6 @@ RSpec.describe 'recipe/show', type: :feature do
     click_link 'Back to recipe'
 
     click_button 'Generate Shopping list'
-    expect(page).to have_current_path(general_shopping_list_path)
+    expect(page).to have_current_path(general_shopping_lists_path)
   end
 end
