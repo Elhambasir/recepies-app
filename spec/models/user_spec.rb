@@ -16,8 +16,6 @@ RSpec.describe User, type: :model do
     expect(user).not_to be_valid
   end
 
-  # Add more validation tests if needed
-
   describe "associations" do
     it "should have many foods" do
       user = FactoryBot.create(:user)
