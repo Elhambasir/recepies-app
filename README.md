@@ -65,10 +65,13 @@ In order to run this project you need Ruby and  Postgresql installed on your com
 
 ### Setup
 
-Clone this repository to your desired folder: 
+Clone this repository to your desired folder with the following command: 
 
-`https://github.com/Elhambasir/recepies-app.git`
-
+```ssh
+  mkdir new-folder
+  cd new-folder
+  git clone https://github.com/Elhambasir/recepies-app.git
+```
 
 ### Install
 
