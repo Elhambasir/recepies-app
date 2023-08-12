@@ -5,7 +5,7 @@
   <td><%= food.price %></td>
   <td>
     <% if can?(:delete, food) %>
-      <%= button_to 'Delete', food_path(food), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-button' %>
+      <%= button_to 'Delete', food_path(food), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm text-danger' %>
     <%else%>
       No actions
     <% end %>

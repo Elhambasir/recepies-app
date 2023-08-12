@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark border-0">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li><%= link_to 'Home',  root_path, class:"nav-link" %></li>
+        <li><%= link_to 'Foods',  foods_path, class:"nav-link" %></li>
+        <li><%= link_to 'Shopping List', general_shopping_lists_path, class:"nav-link" %></li>
+        <li><%= link_to 'Public Recipes', public_recipes_path, class:"nav-link" %></li>
+        <li><%= link_to 'Recipes',  recipes_path, class:"nav-link" %></li>
+        <% if user_signed_in? %>
+          <!-- Display the sign-out button -->
+          <li><%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: 'btn nav-link' %></li>
+        <% else %>
+          <!-- Display sign-in or registration links -->
+          <li><%= link_to "Sign In", new_user_session_path, class:"nav-link" %></li>
+          <li><%= link_to "Register", new_user_registration_path, class:"nav-link" %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

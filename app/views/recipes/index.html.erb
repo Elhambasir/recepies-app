@@ -1,11 +1,6 @@
 
 <div class="container mt-5 bg-light">
-<% if notice %>
-  <div class="alert alert-success alert-dismissible fade show" role="alert">
-    <strong>Notice!</strong><%= notice %>.
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-<% end %>
+  <h1 class="text-center">Recipes</h1>
 <%= link_to "New recipe", new_recipe_path, class:"btn btn-sm btn-success m-2"%>
   <% @recipes.each do |recipe| %>
     <div class="row  d-flex justify-content-center">

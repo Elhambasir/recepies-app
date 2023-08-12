@@ -14,15 +14,4 @@
  *= require_self
  */
 
-.alert {
-  color: red;
-}
 
-.notice {
-  color: green;
-}
-
-.notice,
-.alert {
-  margin-top: 20px;
-}
