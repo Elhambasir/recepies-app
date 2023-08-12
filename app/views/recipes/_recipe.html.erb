@@ -1,0 +1,60 @@
+<div class='recipe-details'>
+  <h2 class='heading'><%= recipe.name.capitalize %></h2>
+  <div class='summary'>
+    <p class='describe'>Public: <span class='status'><%= @recipe.public ? 'Yes' : 'No' %></span></p>
+    <span class='describe'>Preparation time: <%= recipe.preparation_time %></span>
+    <% if current_user == @recipe.user %>
+      <span class='toggle'>
+        <%= button_to toggle_public_recipe_path(@recipe), method: :patch, class: 'toggle-public-btn' do %>
+          <%= @recipe.public? ? 'Make Private' : 'Make Public' %>
+        <% end %>
+      </span>
+    <% end %>
+    <p class='describe'>Cooking time: <%= recipe.cooking_time %></p>
+  </div>
+
+  <div>
+    <p><%= recipe.description %></p>
+  </div>
+
+  <% if current_user == @recipe.user %>
+    <div class='buttons-details'>
+      <%= button_to "Generate Shopping list", general_shopping_lists_path, method: :get, class: 'shopping-list-btn' %>
+      <%= button_to "Add ingridient", new_recipe_food_path(recipe), method: :get, class: 'ingredient-btn' %>
+    </div>
+  <% end %>
+
+  <hr/>
+
+  <table>
+    <tr>
+      <th>Food</th>
+      <th>Measurement unit</th>
+      <th>Quantity</th>
+      <th>Value</th>
+      <th>Actions</th>
+    </tr>
+    <tbody>
+      <% if @recipe.recipe_foods.empty? %>
+        <tr>Add ingredients!</tr>
+      <% else %>
+        <% @recipe.recipe_foods.each do |recipe_food| %>
+          <tr>
+            <td><%= recipe_food.food.name %></td>
+            <td><%= recipe_food.food.measurement_unit %></td>
+            <td><%= recipe_food.quantity %></td>
+            <td>$<%= recipe_food.food.price * recipe_food.quantity %></td>
+            <td class='btns'>
+              <span>
+                <%= link_to 'Edit', edit_recipe_food_path(@recipe, recipe_food), class: 'edit-food-btn' %>
+              </span>
+              <span>
+                <%= button_to 'Remove', recipe_food_path(@recipe, recipe_food), method: :delete, local: true, class: 'remove-food-btn' %>
+              </span>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

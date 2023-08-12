@@ -1,0 +1,13 @@
+<tr class='food-item'>
+  <td><%= food.name.capitalize %></td>
+  <td><%= food.measurement_unit %></td>
+  <td><%= food.quantity %></td>
+  <td><%= food.price %></td>
+  <td>
+    <% if can?(:delete, food) %>
+      <%= button_to 'Delete', food_path(food), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-button' %>
+    <%else%>
+      No actions
+    <% end %>
+  </td>
+</tr>

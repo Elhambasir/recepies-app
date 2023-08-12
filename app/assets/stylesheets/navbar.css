@@ -1,0 +1,40 @@
+nav {
+  border: 1px solid darkblue;
+  box-shadow:
+    0.1px 0.1px 27.5px -15px rgba(0, 0, 0, 0.105),
+    0.4px 0.3px 49.7px -15px rgba(0, 0, 0, 0.148),
+    0.8px 0.7px 65.4px -15px rgba(0, 0, 0, 0.175),
+    1.6px 1.4px 74.8px -15px rgba(0, 0, 0, 0.197),
+    3.2px 2.8px 79.4px -15px rgba(0, 0, 0, 0.216),
+    6.6px 5.9px 81.6px -15px rgba(0, 0, 0, 0.234),
+    26px 23px 83px -15px rgba(0, 0, 0, 0.25);
+}
+
+.navbar-app {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.navbar-app a {
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+}
+
+.navbar-app a:hover {
+  color: blue;
+  text-decoration: underline;
+}
+
+.sign-button {
+  padding: 3px;
+  border-radius: 5px;
+}
+
+.sign-button:hover {
+  color: red;
+  cursor: pointer;
+}

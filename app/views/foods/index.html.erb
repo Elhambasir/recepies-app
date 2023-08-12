@@ -1,0 +1,23 @@
+<h1 class='heading'>Foods</h1>
+
+<table class='food-table'>
+  <thead>
+    <tr class='food-header'>
+      <th>Name</th>
+      <th>Measurement unit</th>
+      <th>Quantity</th>
+      <th>Unit price</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @foods.each do |food| %>
+      <%= render food %>
+    <% end %>
+  </tbody>
+</table>
+
+<% if current_user %>
+  <%= button_to 'New food', new_food_path, method: :get, class: 'new-food-btn' %>
+<%end%>
+

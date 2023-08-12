@@ -1,0 +1,32 @@
+
+<div class="container mt-5 bg-light">
+<% if notice %>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Notice!</strong><%= notice %>.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end %>
+<%= link_to "New recipe", new_recipe_path, class:"btn btn-sm btn-success m-2"%>
+  <% @recipes.each do |recipe| %>
+    <div class="row  d-flex justify-content-center">
+      <div class="card mb-3" style="max-width: 95%">
+          <div class="row g-0">
+            <div class="col-md-4 ">
+              <h4 class="mt-3"><%=recipe.name %></h4>
+              <% if recipe.user_id == current_user.id %>
+                <%= button_to "Remove", recipe, method: :delete, class:"nav-link btn text-danger bordr-0 ms-5" %>
+              <% end %>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <p class="card-text"><%=recipe.description %></p>
+                <p>
+                  <%= link_to "Show this recipe", recipe %>
+                </p>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div> 
+  <% end %>
+</div>
