@@ -1,21 +1,21 @@
-<div class="container mt-5 bg-light">
-  <div class="row text-center">
+<div class="form-container mt-5 bg-light">
+  <div class="row">
     <div class="col-md-12 mb-3 mt-3">
-      <h1>Public Recipes</h1>
+      <h2 class="text-center">Public Recipes</h2>
     </div>
   </div>
   <% @public_recipes.each do |recipe| %>
     <div class="row  d-flex justify-content-center">
       <div class="card mb-3" style="max-width: 95%">
           <div class="row g-0">
-            <div class="col-md-4 ">
-              <h4 class="mt-3"><%=recipe.name %></h4>
-              <p>By : <%=recipe.user.name %></p>
+            <div class="col-md-3 ">
+              <h3 class="mt-3"><%=recipe.name %></h3>
+              <h6>By : <%=recipe.user.name %></h6>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
               <div class="card-body">
-                <p class="card-text">Total food items: <%=recipe.recipe_foods.count %></p>
-                <p>Total Price : $
+                <h6 class="card-text">Total food items: <%=recipe.recipe_foods.count %></h6>
+                <h6>Total Price : $
                 <% total_price = 0 %>
                 <% recipe.recipe_foods.each do |recipe_food| %>
                 <% total_price += recipe_food.quantity * (Food.find(recipe_food.food_id).price) %>

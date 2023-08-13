@@ -5,7 +5,9 @@
   <td><%= food.price %></td>
   <td>
     <% if can?(:delete, food) %>
+    <% if food.recipe_foods.empty? %>
       <%= button_to 'Delete', food_path(food), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm text-danger' %>
+    <%end%>
     <%else%>
       No actions
     <% end %>

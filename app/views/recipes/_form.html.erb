@@ -11,37 +11,37 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="mb-2">
+    <%= form.label :name, class:"form-label" %>
+    <%= form.text_field :name, class:"form-control" %>
   </div>
 
-  <div>
-    <%= form.label :preparation_time, style: "display: block" %>
-    <%= form.text_field :preparation_time %>
+  <div class="mb-2">
+    <%= form.label :preparation_time, class:"form-label" %>
+    <%= form.text_field :preparation_time, class:"form-control"  %>
   </div>
 
-  <div>
-    <%= form.label :cooking_time, style: "display: block" %>
-    <%= form.text_field :cooking_time %>
+  <div class="mb-2">
+    <%= form.label :cooking_time, class:"form-label" %>
+    <%= form.text_field :cooking_time, class:"form-control"  %>
   </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+  <div class="pe-5 mb-2">
+    <%= form.label :description, class:"form-label" %>
+    <%= form.text_area :description, class:"form-control"  %>
   </div>
 
-  <div>
-    <%= form.label :public, style: "display: block" %>
-    <%= form.check_box :public %>
+  <div class="mb-3">
+    <%= form.label :public, style: "display: inline", class:"me-2"%>
+    <%= form.check_box :public, class:"mb-3 mt-3" %>
   </div>
 
-  <div>
-    <%# <%= form.label :user_id, style: "display: block" %>
+  <div class="mb-3">
+    <%# <%= form.label :user_id %>
     <%= form.text_field :user_id, value: "#{current_user.id}", hidden:"hidden" %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit class:"btn btn-primary" %>
   </div>
 <% end %>

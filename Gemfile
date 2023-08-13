@@ -87,4 +87,4 @@ gem 'devise'
 
 gem 'cancancan'
 
-gem 'pg', '~> 1.5', '>= 1.5.3'
+# gem 'pg', '~> 1.5', '>= 1.5.3'

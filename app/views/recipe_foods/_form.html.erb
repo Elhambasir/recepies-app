@@ -1,17 +1,15 @@
-<div class='form-container'>
   <%= form_with(model: recipe_food) do |form| %>
-    <div class="field">
-      <%= form.label :food_id, "Food Item", style: "display: block" %>
-      <%= form.collection_select(:food_id, Food.where(user_id: current_user), :id, :name) %>
+    <div class="field mb-3">
+      <%= form.label :food_id, "Food Item", class:"form-label" %>
+      <%= form.collection_select(:food_id, Food.where(user_id: current_user), :id, :name)%>
     </div>
 
-    <div class="field">
-      <%= form.label :quantity, style: "display: block" %>
-      <%= form.number_field :quantity %>
+    <div class="field mb-3">
+      <%= form.label :quantity, class:"form-label" %>
+      <%= form.number_field :quantity, class:"form-control" %>
     </div>
 
-    <div class="actions">
-      <%= form.submit "Add Food Item" %>
+    <div class="">
+      <%= form.submit "Add Food Item", class:"btn btn-primary" %>
     </div>
   <% end %>
-</div>
